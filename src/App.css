@@ -1,0 +1,144 @@
+.scene {
+    width: 500px;
+    height: 300px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    perspective: 300px;
+  }
+  
+  .room {
+    width: 500px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(0px);
+  }
+  
+  .wall {
+    position: absolute;
+    background: #333;
+    border: 1px solid #444;
+  }
+  
+  /* Parede do fundo */
+  .back {
+    width: 500px;
+    height: 300px;
+    transform: translateZ(100px);
+    background: #666;
+    z-index: 0;
+  }
+
+  .elevator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 200px;
+    background: #686868;
+    border: 2px solid #A7A7A7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Garante que nada passe dos limites */
+    z-index: 1;
+  }
+
+  .elevator-screen {
+    position: absolute;
+    bottom: 202px; /* exatamente a altura do elevador */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 25px;
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 16px;
+    text-align: center;
+    line-height: 25px;
+    border: 1px inset #999;
+  }  
+  
+  .doors {
+    width: 100%;
+    height: 100%; /* Corrige o espaço embaixo */
+    background: linear-gradient(to right, #444 49%, #555 51%);
+  }
+  
+  /* Painel de botões */
+  .panel {
+    position: absolute;
+    bottom: 10%;
+    left: 55%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 130px;
+    background: #686868;
+    border: 2px solid #A7A7A7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 8px;
+    gap: 6px;
+  }
+  
+  .screen {
+    width: 100%;
+    height: 25px;
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 16px;
+    text-align: center;
+    line-height: 25px;
+    border: 1px inset #999;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  
+  .buttons .btn {
+    width: 30px;
+    padding: 2px 0;
+    font-size: 14px;
+  }
+    
+  /* Esquerda */
+  .left {
+    width: 500px;
+    height: 300px;
+    transform: rotateY(90deg) translateZ(-250px);
+    background: #444;
+  }
+  
+  /* Direita */
+  .right {
+    width: 500px;
+    height: 300px;
+    transform: rotateY(-90deg) translateZ(-250px);
+    background: #444;
+  }
+  
+  /* Chão */
+  .floor {
+    width: 500px;
+    height: 500px;
+    transform: rotateX(90deg) translateZ(-50px);
+    background: #ffffff;
+  }
+  
+  /* Teto */
+  .roof {
+    width: 500px;
+    height: 500px;
+    transform: rotateX(-90deg) translateZ(-250px);
+    background: #2a2a2a;
+  }
+  
