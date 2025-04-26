@@ -27,7 +27,7 @@
     background: #666;
     z-index: 0;
   }
-/* Estilos para o painel de chamada */
+
 .panelCall {
     position: absolute;
     bottom: 30%;
@@ -58,8 +58,7 @@
     line-height: 1;
     text-align: center;
   }
-  
-  /* Estilos para o elevador */
+
   .elevator {
     position: absolute;
     bottom: 0;
@@ -67,7 +66,7 @@
     transform: translateX(-50%);
     width: 100px;
     height: 200px;
-    background: #686868;
+    background: linear-gradient(to right, #5e5d5d 49%, #555 51%);
     border: 2px solid #A7A7A7;
     display: flex;
     align-items: center;
@@ -92,19 +91,23 @@
     border: 1px inset #999;
   }
   
-  /* Estilos para as portas */
   .doors {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #444 49%, #555 51%);
-    transition: background 1s ease;
+    background:#858484;
+    transition: width 1s ease-in-out;
+    overflow: hidden;
+    display: flex;
   }
   
   .doors.open {
-    background: #0f0; /* Cor de fundo quando a porta está aberta */
+    width: 100%;
   }
   
-  /* Estilos para o painel de controle */
+  .doors.closed {
+    width: 0%;
+  }
+  
   .panel {
     position: absolute;
     bottom: 10%;
@@ -147,7 +150,6 @@
     font-size: 14px;
   }
       
-  /* Esquerda */
   .left {
     width: 500px;
     height: 300px;
@@ -155,7 +157,6 @@
     background: #444;
   }
   
-  /* Direita */
   .right {
     width: 500px;
     height: 300px;
@@ -163,7 +164,6 @@
     background: #444;
   }
   
-  /* Chão */
   .floor {
     width: 500px;
     height: 500px;
@@ -171,11 +171,62 @@
     background: #ffffff;
   }
   
-  /* Teto */
   .roof {
     width: 500px;
     height: 500px;
     transform: rotateX(-90deg) translateZ(-250px);
     background: #2a2a2a;
   }
+
+  .objeto-container {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
   
+  .objeto {
+    position: relative;
+    z-index: 10;
+  }
+  
+  
+  .mesa {
+    width: 100px;
+    height: 50px;
+    background-color: #8B4513;
+    border-radius: 5px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .sofa {
+    width: 100px;
+    height: 50px;
+    background-color: #0d2cdb;
+    border-radius: 5px;
+    position: relative;
+    z-index: 10
+  }
+  
+  .cadeira {
+    width: 100px;
+    height: 50px;
+    background-color: #22c0e7;
+    border-radius: 5px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .tapete {
+    width: 100px;
+    height: 50px;
+    background-color: #f792e1;
+    border-radius: 5px;
+    position: relative;
+    z-index: 10;
+  }   
