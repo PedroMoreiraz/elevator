@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import './App.css';
+import { BsArrowLeft, BsArrowRight, BsClipboard2 } from "react-icons/bs";
 
 function App() {
   const [andar, setAndar] = useState(0);
   const [emMovimento, setEmMovimento] = useState(false);
   const [portaAberta, setPortaAberta] = useState(false);
   const [elevadorChamado, setElevadorChamado] = useState(false);
+  const [historicoAndares, setHistoricoAndares] = useState([]);
+  const [mostrarMapa, setMostrarMapa] = useState(false);
+  const [paginaAtual, setPaginaAtual] = useState(0);
+
+  const itensPorPagina = 2;
 
   const cenarios = [
     { nome: "Andar 0", objeto: "mesa" },
@@ -13,6 +19,13 @@ function App() {
     { nome: "Andar 2", objeto: "cadeira" },
     { nome: "Andar 3", objeto: "tapete" },
   ];
+
+  const totalPaginas = Math.ceil(historicoAndares.length / itensPorPagina);
+
+  const andaresPaginaAtual = historicoAndares.slice(
+    paginaAtual * itensPorPagina,
+    (paginaAtual + 1) * itensPorPagina
+  );
 
   const irParaAndar = async (destino) => {
     if (emMovimento || destino === andar || !elevadorChamado) return;
@@ -25,6 +38,7 @@ function App() {
     for (let i = andar + passo; passo > 0 ? i <= destino : i >= destino; i += passo) {
       await new Promise(resolve => setTimeout(resolve, 3000));
       setAndar(i);
+      setHistoricoAndares(prev => [...prev, i]); // Adiciona ao histórico
     }
 
     setPortaAberta(true);
@@ -61,13 +75,41 @@ function App() {
     }
   };
 
-  const { fundo, objeto } = cenarios[andar];
+  const { objeto } = cenarios[andar];
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
       <div className="roomContainer">
         <div className="room">
           <div className="wall back">
+            <button className="map-toggle" onClick={() => setMostrarMapa(!mostrarMapa)}>
+              <BsClipboard2 className='btnMap'/>
+            </button>
+            {mostrarMapa && (
+              <div className="map-overlay">
+                <h5>Andares Visitados</h5>
+                <ul>
+                  {andaresPaginaAtual.map((andar, index) => (
+                    <li key={index}>Andar {andar}</li>
+                  ))}
+                </ul>
+                <div className="paginacao">
+                  <button
+                    onClick={() => setPaginaAtual(p => Math.max(p - 1, 0))}
+                    disabled={paginaAtual === 0}
+                  >
+                    <BsArrowLeft/>
+                  </button>
+                  <span>Página {paginaAtual + 1} de {totalPaginas}</span>
+                  <button
+                    onClick={() => setPaginaAtual(p => Math.min(p + 1, totalPaginas - 1))}
+                    disabled={paginaAtual >= totalPaginas - 1}
+                    >
+                    <BsArrowRight/>
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="panelCall">
               <div className="buttonsCall">
                 <button
